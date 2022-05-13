@@ -5,7 +5,7 @@ This Method calculates the fewest number of operations in the task
 
 
 def minOperations(n):
-    """This method returns the number of operations to copy paste in the task"""
+    """This method returns the number of operations to copy paste the task"""
     if n <= 1:
         return 0
     operation = 0
