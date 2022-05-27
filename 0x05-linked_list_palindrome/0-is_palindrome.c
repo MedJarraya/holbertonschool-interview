@@ -1,70 +1,51 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
 /**
- *  reverseList - will reverse the singly linked
- * @temp: pointer to pointer of first node of listint_t list
- * Return: listint_t
- */
-listint_t *reverseList(listint_t *temp)
-{
-	listint_t *current = temp;
-	listint_t *prevNode = NULL, *nextNode = NULL;
-
-	while (current != NULL)
-	{
-		nextNode = current->next;
-		current->next = prevNode;
-		prevNode = current;
-		current = nextNode;
-	}
-	return (prevNode);
-}
-/**
- * is_palindrome - check for palindrome
- * @head: pointer to pointer of first node of listint_t list
- * Return: true or false
+ * is_palindrome - a function that checks if a singly linked list is a palindrome.
+ * @head: the head of linked list
+ * 
+ * return: 0 if is not a plaindrome otherwise 1 if it is a plaindrome
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *p, *q, *first_start, *second_start;
-		p = *head;
-		q = *head;
+    listint_t *first, *second;
+    listint_t *p = *head, *q = *head;
 
-		if (p->next == NULL)
-			return (1);
-		while (1)
-		{
-			p = p->next->next;
-			if (p == NULL)
-			{
-				second_start = q->next;
-				break;
-			}
-			if (p->next == NULL)
-			{
-				second_start = q->next->next;
-				break;
-			}
-			q = q->next;
-		}
-		q->next = NULL;
-		second_start = reverseList(second_start);
-		first_start = *head;
-		while (first_start != NULL && second_start != NULL)
-		{
-			if (first_start->n == second_start->n)
-			{
-				first_start = first_start->next;
-				second_start = second_start->next;
-				free(second_start);
-			}
-			else
-			{
-				return (0);
-			}
-		}
-		free(q);
-		free(p);
-		return (1);
+    /* at end of loop q will be the middle node */
+    while (p && p->next)
+    {
+        q = q->next;
+        p = p->next->next;
+    }
+
+    /* reverse the list on the middle node to get head of second list */
+    second = reverseLinkedList(q);
+    first = *head;
+
+    while (second)
+    {
+        if (second->n != first->n)
+            return (0);
+        second = second->next;
+        first = first->next;
+    }
+    return (1);
+}
+
+/**
+ * reverseLinkedList - function that reverses a linked list
+ * @head: head of list to be reversed
+ * Return: head of reversed list
+ */
+listint_t *reverseLinkedList(listint_t *head)
+{
+    listint_t *ptr = NULL, *current = head, *next;
+
+    while (current)
+    {
+        next = current->next;
+        current->next = ptr;
+        ptr = current;
+        current = next;
+    }
+    return (ptr);
 }
