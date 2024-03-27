@@ -1,14 +1,10 @@
 #!/usr/bin/python3
-"""
-this script reads stdin line by line and computes metrics!
-"""
+"""this script reads stdin line by line and computes metrics!"""
 import sys
 
 
 def print_stats(total_size, status_codes):
-    """
-    this script reads stdin line by line and computes metrics! 
-    """
+    """this script reads stdin line by line and computes metrics! """
     print("File size: {}".format(total_size))
     for code in sorted(status_codes):
         count = status_codes[code]
@@ -17,9 +13,7 @@ def print_stats(total_size, status_codes):
 
 
 def main():
-    """
-    this script reads stdin line by line and computes metrics!
-    """
+    """this script reads stdin line by line and computes metrics!"""
     total_size = 0
     status_codes = {200: 0, 301: 0, 400: 0,
                     401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
