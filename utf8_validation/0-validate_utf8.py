@@ -4,13 +4,12 @@ utf8 validation
 """
 
 
-from codecs import decode
-
-
 def validUTF8(data):
-    """utf8 validation"""
+    """
+utf8 validation
+"""
     try:
-        decoded_data = decode(bytes(data), 'utf-8')
+        bytes([n & 255 for n in data]).decode("UTF-8")
         return True
-    except ValueError:
+    except Exception:
         return False
