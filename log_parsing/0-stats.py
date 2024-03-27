@@ -1,47 +1,15 @@
 #!/usr/bin/python3
-"""this script reads stdin line by line and computes metrics!"""
+import random
 import sys
+from time import sleep
+import datetime
 
-
-def print_stats(total_size, status_codes):
-    """this script reads stdin line by line and computes metrics! """
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes):
-        count = status_codes[code]
-        if count > 0:
-            print("{}: {}".format(code, count))
-
-
-def main():
-    """this script reads stdin line by line and computes metrics!"""
-    total_size = 0
-    status_codes = {200: 0, 301: 0, 400: 0,
-                    401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-    line_count = 0
-
-    try:
-        for line in sys.stdin:
-            parts = line.split()
-            if len(parts) >= 7:
-                status_code = parts[-2]
-                if status_code.isdigit():
-                    status_code = int(status_code)
-                else:
-                    continue
-                file_size = int(parts[-1])
-                if status_code in status_codes:
-                    status_codes[status_code] += 1
-                total_size += file_size
-                line_count += 1
-
-            if line_count % 10 == 0:
-                print_stats(total_size, status_codes)
-
-    except KeyboardInterrupt:
-        pass
-
-    print_stats(total_size, status_codes)
-
-
-if __name__ == "__main__":
-    main()
+for i in range(10000):
+    sleep(random.random())
+    sys.stdout.write("{:d}.{:d}.{:d}.{:d} - [{}] \"GET /projects/260 HTTP/1.1\" {} {}\n".format(
+        random.randint(1, 255), random.randint(1, 255), random.randint(1, 255), random.randint(1, 255),
+        datetime.datetime.now(),
+        random.choice([200, 301, 400, 401, 403, 404, 405, 500]),
+        random.randint(1, 1024)
+    ))
+    sys.stdout.flush()
