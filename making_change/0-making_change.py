@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"This module contains a function to count coins"
+"""This function count total coins"""
 
 
 def makeChange(coins, total):
-    "This function determines the fewest number of coins"
-    # if total is 0 or less than 0, return 0
+    """This function counts minimum coins"""
+    # if total is 0, return 0
 
     count = 0
     if total > 0:
