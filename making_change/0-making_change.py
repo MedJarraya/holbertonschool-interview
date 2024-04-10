@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"This module contains a function named make change to count fewest number of coins needed to meet total"
+"This module contains a function to count coins"
 
 
 def makeChange(coins, total):
-    "This function determines the fewest number of coins needed to meet amount total"
+    "This function determines the fewest number of coins"
     # if total is 0 or less than 0, return 0
 
     count = 0
